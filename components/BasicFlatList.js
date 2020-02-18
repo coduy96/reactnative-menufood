@@ -11,6 +11,7 @@ import {
 import flatListItem from "../data/flatListData";
 import AddModal from "./AddModal";
 import { Icon } from "react-native-elements";
+import EditModal from "./EditModal";
 
 export default class DefaultFlatList extends Component {
   constructor(props) {
@@ -31,6 +32,9 @@ export default class DefaultFlatList extends Component {
   };
   onPressAdd() {
     this.refs.addModal.showModal();
+  }
+  onPressEdit() {
+    this.refs.editModal.showEditModal()
   }
   render() {
     return (
@@ -62,6 +66,7 @@ export default class DefaultFlatList extends Component {
           }}
         ></FlatList>
         <AddModal ref={"addModal"} parentFlatList={this}></AddModal>
+        <EditModal ref={"editModal"} parentFlatList={this}></EditModal>
       </View>
     );
   }
@@ -84,7 +89,9 @@ class FlatListItem extends Component {
       sectionId: 1,
       right: [
         {
-          onPress: () => {},
+          onPress: () => {
+              this.props.parentFlatList.refs.editModal.showEditModal(flatListItem[this.props.index], this)
+          },
           text: "Edit",
           type: "edit"
         },
