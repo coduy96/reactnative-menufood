@@ -103,7 +103,7 @@ export default class EditModal extends Component {
             const foodIndex = flatListItem.findIndex((item) => this.state.id == item.id);
 
             flatListItem[foodIndex].food = this.state.newFoodName;
-            flatListItem[foodIndex].description = this.state.newFoodName;
+            flatListItem[foodIndex].description = this.state.newFoodDescription;
             const newKey = randomString({length: 20});
             this.props.parentFlatList.refreshFlatList(newKey);
             this.refs.myModal.close();
